@@ -1,0 +1,7 @@
+version: "3"
+services:
+  commitleague:
+    build:
+      context: ../../src
+      dockerfile: ../deployment/docker/Dockerfile
+    image: hadialnehlawi/commitleague

@@ -1,0 +1,8 @@
+venv
+.vscode
+.DS_Store
+.pytest_cache
+push.sh
+.env
+/deployment/env/api.env
+/deployment/k8s/env-secret.yml

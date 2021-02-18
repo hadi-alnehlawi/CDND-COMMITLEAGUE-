@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+    OWNER: pallets
+    REPOSITORY: flask
+metadata:
+  name: env-config

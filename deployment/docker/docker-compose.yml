@@ -1,0 +1,31 @@
+version: "3"
+
+services:
+  ###local postgresql###
+  db:
+    image: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      ../env/db.env
+    container_name: db_commitleague
+  commitleague:
+    ###if no docker-compose-build.yml####
+    # build: 
+    #   context: ../../src
+    #   dockerfile: ../deployment/docker/Dockerfile
+    image: hadialnehlawi/commitleague
+    env_file:
+      ../env/api.env
+    container_name: commitleague
+    ports:
+      - 5000:5000
+    # restart: always
+    ###local posgres db depending####
+    depends_on:
+      - db
+    ###waiting for local db before laucnhing####
+    command: /bin/bash -c "chmod 755 /code/* && ./wait-for-it.sh -t 0 db:5432 -- && echo 'postgres is ready' && flask db upgrade && flask run --host=0.0.0.0"
+    ###wihtout waiting###
+    # command: /bin/bash -c "chmod 755 /code/* && flask db upgrade && flask run --host=0.0.0.0"
+
