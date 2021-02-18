@@ -3,5 +3,9 @@ services:
   commitleague:
     build:
       context: ../../src
-      dockerfile: ../deployment/docker/Dockerfile
+      dockerfile: ../deployment/docker/commitleague/Dockerfile
     image: hadialnehlawi/commitleague
+  reverseproxy:
+    build:
+      context: ./reverseproxy
+    image: hadialnehlawi/reverseproxy
